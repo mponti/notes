@@ -1,0 +1,78 @@
+# Debian Install
+### notes to setup debian from scratch
+
+## Install of .iso basics
+install debian "testing" netinstall .iso (minimal, need network cable, 2 flashdrives)
+### netinstall requires non-oppressive internet connection
+
+## Basic system cleanup and initial maintenance items
+nano /etc/apt/sources.list // comment out security repos [noti available on sid], change testing/buster to unstable
+## Add more edge to the bleeding edge
+deb http://httpredir.debian.org/debian/ sid main contrib non-free
+
+## Update system
+apt update
+
+apt install
+intel-microcode
+htop
+mtop
+sysstat (iostat)
+iotop
+net-tools
+screen
+man
+curl
+dnsutils
+telnet
+git
+tcpdump
+memstat
+tree
+iftop
+wget
+vim
+ntp
+ntpdate
+nmap
+zip
+unzip
+powertop
+tmux
+traceroute
+mtr
+tmux
+jq
+ctop
+
+## Remove grub timeout screen
+sudo vim /etc/default/grub
+GRUB_TIMEOUT=0
+sudo update-grub && update-grub2
+
+## Set swap usage to wait until 95% untilization of RAM
+set swappiness to 5     vim /etc/sysctl.d/99-sysctl.conf     vm.swappiness=5
+
+## Remove fluff
+apt remove gnome-games
+
+## Install chrome
+dpkg -i <link>
+apt -f install  //fixes dependencies
+dpkg -i <link>
+
+### TODO:Fill in with links etc.
+slack
+sublime/atom/latest-hot-text-editor
+terraform
+vault
+packer
+consul
+
+## Setup Docker
+https://docs.docker.com/engine/installation/linux/docker-ce/debian/#install-using-the-repository
+### Run docker as yourself
+sudo usermod -aG docker $(whoami)
+
+### Credits
+Tons of help from @matthewbrahms to compile this list.
