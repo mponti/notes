@@ -74,6 +74,7 @@ consul
 
 ## Setup Docker
 https://docs.docker.com/engine/installation/linux/docker-ce/debian/#install-using-the-repository
+### Note: if you're running Debian sid, you'll need to downgrade the sources back to stretch
 ### Run docker as yourself
 sudo usermod -aG docker $(whoami)
 
