@@ -45,6 +45,9 @@ tmux
 jq
 ctop
 
+## Set system-wide default editor (this is really important)
+update-alternatives --config editor  (choose option 2 vim.basic)
+
 ## Remove grub timeout screen
 sudo vim /etc/default/grub
 GRUB_TIMEOUT=0
