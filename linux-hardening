@@ -1,0 +1,28 @@
+# Considerations when hardening a linux system
+
+## Principle of least privilege
+
+## Avoid running processes as root when not needed
+
+## Single User mode attack vector mitigation
+
+1. Make sure booting into single user requires sulogin not sushell
+  - for systemd systems edit:
+  ```
+  > /lib/systemd/system/emergency.service && /lib/systemd/system/rescue.service
+  ```
+
+2. Also make sure that editing grub has a password to prevent changing initto bypass sulogin
+  - generate encrypted password for grub
+  ```
+  > grub-mkpasswd-pbkdf2
+  ```
+  - edit /etc/grub/40-custom
+  ```
+  > set superusers="root"
+  > password_pbkdf2 root grub.pbkdf2.sha512.10000.58F...hash...B88CC0EB4
+  ```
+  - regenerate grub configs
+  ```
+  > update-grub && update-grub2
+  ```
