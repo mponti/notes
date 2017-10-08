@@ -22,7 +22,21 @@
   > set superusers="root"
   > password_pbkdf2 root grub.pbkdf2.sha512.10000.58F...hash...B88CC0EB4
   ```
+  - set boot items as unrestricted to avoid having to enter password at EVERY boot
+  ```
+  > vim /etc/grub/10-linux
+  > /menuentry
+  [...]
+   echo "menuentry '$(echo "$title" | grub_quote)' --unrestricted ${CLASS} \$menuentry_id_option 'gnulinux-$version-$type-$boot_device_id' {" | sed "s/^/$submenu_indentation/"
+   else
+   echo "menuentry '$(echo "$os" | grub_quote)' --unrestricted ${CLASS} \$menuentry_id_option 'gnulinux-simple-$boot_device_id' {" | sed "s/^/$submenu_indentation/"
+  [...]
+  > add `--unrestricted` same as the lines above
+  ```
+  - note: grub will override that file on update so you may need to do the step above again, unless you can override with 40-custom entry instead?
   - regenerate grub configs
   ```
   > update-grub && update-grub2
   ```
+
+Reference: http://daniel-lange.com/archives/75-Securing-the-grub-boot-loader.html
