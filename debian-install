@@ -10,6 +10,10 @@ nano /etc/apt/sources.list // comment out security repos [noti available on sid]
 ## Add more edge to the bleeding edge
 deb http://httpredir.debian.org/debian/ sid main contrib non-free
 
+## 
+Open /etc/apt/apt.conf.d/google-workaround.conf
+Acquire::http::Pipeline-Depth "0";
+
 ## Update system
 apt update
 
@@ -87,3 +91,4 @@ create /etc/docker/daemon.json with the following content:
 
 ### Credits
 Tons of help from @matthewbrahms to compile this list.
+https://muffinresearch.co.uk/linux-fix-for-apt-get-update-waiting-for-headers/ Headers fix
