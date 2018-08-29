@@ -10,6 +10,9 @@ nano /etc/apt/sources.list // comment out security repos [noti available on sid]
 ## Add more edge to the bleeding edge
 deb http://httpredir.debian.org/debian/ sid main contrib non-free
 
+## Make sure apt doesn't use the diff package system for updates
+echo 'Acquire::PDiffs "false";' > /etc/apt/apt.conf.d/99pdiff-fix
+
 ## Update system
 apt update
 
@@ -89,6 +92,8 @@ create /etc/docker/daemon.json with the following content:
 Tons of help from @matthewbrahms to compile this list.
 
 
+
+### Outdated configs (read: old hardware)
 Update the list of available packages. Install the relevant/latest linux-image, linux-headers and broadcom-sta-dkms packages:
 
 # apt-get update
